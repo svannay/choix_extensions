@@ -1,0 +1,39 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+% ----------------------------------------------------------------------------------------------------------------
+% Définition des styles les figures tikz
+% ----------------------------------------------------------------------------------------------------------------
+\tikzset{point/.style={fill=blue,draw=blue}}
+\tikzset{texte/.style={text=black,font=\normalsize}}
+\tikzset{trait/.style={draw=black}}
+\tikzset{traitEvidence/.style={draw=red,line width=1.5pt}}
+\tikzset{tille/.style={dash pattern=on 2pt off 2pt}}
+\fbox{
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+		\clip(-4.2,-2.25) rectangle (4.2,2.25);
+		\draw [shift={(0.,0.)},trait] (0.:0.6854580630479429) arc (0.:56.31933868044399:0.6854580630479429);
+		\draw[trait](0.,0.) circle (1.5cm);
+		\draw[trait] (-2.,0.)-- (2.,0.);
+		\draw[trait] (0.,-2.)-- (0.,2.);
+		\draw[texte] (1.7,-.3) node {$1$};
+		\draw[texte] (0.15,1.7) node {$1$};
+		\draw [trait,tille] (0.,1.2482120217786377)-- (0.8318453874893375,1.2482120217786377);
+		\draw [trait,tille] (0.8318453874893375,1.2482120217786377)-- (0.8318453874893375,0.);
+		\draw[trait] (0.8318453874893375,1.2482120217786377)-- (0.,0.);
+%		\draw[texte](0.7,-.3) node {$\cos(\alpha)$};
+%		\draw[texte] (-0.7,1.2) node {$\sin(\alpha)$};
+		\draw[point] (0.,0.) circle (1.5pt);
+		\draw[texte] (-0.3,-0.3) node {$O$};
+		\draw [trait,fill=black,shift={(2.,0.)},rotate=270] (0,0) ++(0 pt,3.75pt) -- ++(3.2475952641916446pt,-5.625pt)--++(-6.495190528383289pt,0 pt) -- ++(3.2475952641916446pt,5.625pt);
+		\draw [trait,fill=black,shift={(0.,2.)}] (0,0) ++(0 pt,3.75pt) -- ++(3.2475952641916446pt,-5.625pt)--++(-6.495190528383289pt,0 pt) -- ++(3.2475952641916446pt,5.625pt);
+		\draw [point] (0.8318453874893375,1.2482120217786377) circle (1.5pt);
+		\draw[texte] (2.55,1.4) node {$P \big(\cos(\alpha), \sin(\alpha) \big)$};
+		\draw[texte] (0.4,0.2) node {$\alpha$};
+	\end{tikzpicture}
+}
+\end{document}

@@ -1,0 +1,376 @@
+% !TeX encoding = UTF-8
+% !TeX root = choix_extensions.tex
+\chapter{Paragraphes spéciaux}
+\label{ch:paragraphesSpeciaux}
+
+Certains paragraphes spéciaux sont très fréquents dans nos documents : \emph{Exemples}, \emph{Définition}, \emph{Remarque}, \emph{Théorèmes}\dots \ Une grosse partie du fichier \incmd{preambule_college.sty} sert à définir des raccourcis pour de tels paragraphes. 
+
+
+
+
+\section{Raccourcis pour les définitions}
+\label{sec:paragrapheSpecialDefin}
+
+Les commandes suivantes permettent de gérer les définitions :
+\begin{enumerate}
+	\item \mintinline{latex}{\defin[titre]{paragraphe}} permet de produire un cadre pour une définition;
+	\item \mintinline{latex}{\defins[Titre]{Définitions}}) : la même au pluriel;
+	\item \mintinline{latex}{\emphdef} permet de mettre en évidence les mots à définir.
+\end{enumerate}
+
+\remarque*{
+	On peut modifier la numérotation (voir \ref{sec:numerotationParagraphes}), mais pas la supprimer.
+}
+
+\begin{LTXexample}[pos=o,width=.4]
+\defin{
+    Définition
+}
+\defins{
+    Version au \emphdef{pluriel}
+}
+\defin[titre]{
+    Version avec \emphdef{titre} en option
+}
+\defins[titre]{
+    Les \emphdef{deux variantes}
+}
+\end{LTXexample}
+
+
+
+
+
+\section{Raccourcis pour des paragraphes fréquents}
+\label{sec:paragraphesSpeciauxThmtools}
+
+Le fichier \incmd{preambule_college.sty} présente toute une série de raccourcis pour les paragraphes les plus courants, chacun dans trois variantes (voir l'exemple ci-dessous):
+\begin{enumerate}
+	\item un titre en option (\mintinline{latex}{\exemple[Titre]{Exemple}});
+	\item une version au singulier et une au pluriel (\mintinline{latex}{\exemple} et \mintinline{latex}{\exemples});
+	\item une version normale et une étoilée, donc sans numérotation (\lstinline!\exemple*!)
+\end{enumerate}
+
+\erreurCourante*{
+	Dans le code \LaTeX, il n'est pas possible de laisser une ligne vide dans un de ces environnements : une erreur de compilation est générée (p. ex. \inlatex{Paragraph ended before \probleme was complete.})
+}
+
+Les fichiers \incmd{.sty} proposés contiennent la définition des commandes suivantes :
+\begin{itemize}[leftmargin=*]
+	\begin{multicols}{4}
+		\item \mintinline{latex}{\exemple}
+		\item \mintinline{latex}{\contreExemple}
+		\item \mintinline{latex}{\remarque}
+		\item \mintinline{latex}{\exercice}
+		\item \mintinline{latex}{\exerciceEtoile}
+		\item \mintinline{latex}{\probleme}
+		\item \mintinline{latex}{\problemeEtoile}
+		\item \mintinline{latex}{\rappel}
+		\item \mintinline{latex}{\rappelEtoile}
+		\item \mintinline{latex}{\propriete}
+		\item \mintinline{latex}{\notionIntuitive}
+		\item \mintinline{latex}{\hypothese}
+		\item \mintinline{latex}{\these}
+		\item \mintinline{latex}{\conclusion}
+		\item \mintinline{latex}{\demonstration}
+		\item \mintinline{latex}{\notation}
+		\item \mintinline{latex}{\algorithme}
+		\item \mintinline{latex}{\erreurCourante}
+		\item \mintinline{latex}{\bestPractice}
+		\item \mintinline{latex}{\astuce}
+	\end{multicols}
+\end{itemize}
+
+\begin{LTXexample}[pos=o,width=.4]
+\exemple{
+    Exemple de base
+}
+\exemples{
+    Exemples (au pluriel)
+}
+\exemple[titre]{
+    Exemple avec titre
+}
+\exemples[titre]{
+    Exemple au pluriel avec titre
+}
+\exemple*{
+    Exemple sans numérotation
+}
+\exemples*{
+    Au pluriel sans numérotation
+}
+\exemple*[titre]{
+    Avec titre, sans numérotation
+}
+\exemples*[titre]{
+    Avec titre, au pluriel, sans numérotation
+}
+\end{LTXexample}
+
+\remarques*{
+	\listtopsep
+	\begin{enumerate}
+		\item Lorsque ces paragraphes débutent immédiatement par une liste (comme c'est le cas pour ce paragraphe-ci), il manque un retour à la ligne. Pour le forcer, voir \ref{sec:listeParSpeciaux}.
+		\item Ces paragraphes sont réalisés avec l'extension \href{http://mirror.ctan.org/macros/latex/exptl/thmtools/thmtools.pdf}{thmtools}. La section \ref{sec:numerotationParagraphes} présente comment adapter la numérotation à ses besoins. Pour le reste, cette extension permet de nombreuses variantes de cadre, d'ombrage, de couleurs\dots
+		\item Les commandes , \mintinline{latex}{\problemeEtoile} et \mintinline{latex}{\rappelEtoile} servent à faire afficher une étoile dans le document final, par exemple pour indiquer un exercice plus difficile ou un rappel spécial.
+	\end{enumerate}
+}
+
+
+
+
+
+\section{Raccourcis pour des paragraphes avec cadres}
+\label{sec:paragraphesSpeciauxCadre}
+
+Certains paragraphes sont mis en forme avec des cadres réalisés en \mintinline{latex}{TikZ}\footnote{TikZ est un langage graphique pour \LaTeX.}. Ces commandes sont disponibles en version étoilée (conformément à la syntaxe \LaTeX, les versions étoilées n'ont pas de numérotation) et prennent un titre en option.
+
+\begin{LTXexample}[pos=o,width=.4]
+\axiome{
+    Un axiome
+}
+\axiome*{
+    Un axiome
+}
+\end{LTXexample}
+
+
+Les commandes suivantes sont disponibles :
+\begin{multicols}{3}
+	\begin{itemize}
+		\item \mintinline{latex}{\axiome}
+		\item \mintinline{latex}{\theoreme}
+		\item \mintinline{latex}{\corollaire}
+		\item \mintinline{latex}{\equivalence}
+		\item \mintinline{latex}{\regle}
+	\end{itemize}
+\end{multicols}
+
+
+
+
+
+\section[Numérotation]{Numérotation des paragraphes spéciaux et références}
+\label{sec:numerotationParagraphes}
+
+
+\subsection[Type de numérotation]{Modifier le type de numérotation}
+
+On peut modifier facilement la numérotation des paragraphes spéciaux dans le fichier \mintinline{latex}{preambule_college.sty}\footnote{Moins facile, mais plus propre : redéfinir le paragraphe spécial dans \mintinline{latex}{preambule_college.sty}.}. Par exemple, la numérotation des rappels recommence à 1 à chaque chapitre à cause du code suivant :
+
+{\small \Verb!\declaretheorem[name=Rappel,style=collegeBase,!{\color{red} \Verb!parent=chapter!}\Verb!]{rappelThm}!}
+
+Pour éviter que la numérotation ne recommence à zéro à chaque chapitre, il suffit d'enlever \mintinline{latex}{parent=chapter}. On peut évidemment mettre autre chose que \mintinline{latex}{chapter} après \mintinline{latex}{parent}. Pour plus de détails, voir la documentation de \href{http://mirror.ctan.org/macros/latex/exptl/thmtools/thmtools.pdf}{thmtools}.
+
+
+
+\subsection{Modification de la numérotation}
+
+Les paragraphes spéciaux sont créés à partir d'environnements \mintinline{latex}{theorem}. Par exemple, pour \mintinline{latex}{\exercice}, on voit, dans \mintinline{latex}{preambule_college.sty}, qu'il y a un environnement \mintinline{latex}{exerciceThm}. A cet environnement est associé un compteur de même nom qu'on peut régler avec \mintinline{latex}{\setcounter}.
+
+Par exemple on crée des exercices et on donne ensuite la solution en faisant repartir à zéro le compteur associé :
+
+\begin{LTXexample}[pos=o,width=0.4]
+\setcounter{exerciceThm}{8}
+
+\subsubsection{Données}
+    \exercice{Neuvième exercice}
+    \exercice{Dixième exercice}
+
+\setcounter{exerciceThm}{8}
+
+\subsubsection{Solutions}
+    \exercice{Solution de l'exercice 9}
+    \exercice{Solution de l'exercice 10}
+\end{LTXexample}
+
+
+
+
+
+\newpage
+
+
+
+
+
+\subsection{Références vers des paragraphes}
+
+Les paragraphes spéciaux sont, en principe, tous construits sur le même modèle. Les commandes \mintinline{latex}{\rappel} et \mintinline{latex}{\rappels} permettent d'illustrer le principe.
+
+\begin{minipage}{.65\linewidth}
+	\begin{minted}{latex}
+\rappel{
+    \label{rappel1}
+    Premier point de référence.
+}
+\rappels[Rappel avec un titre]{
+    \label{rappel2}
+    Deuxième point de référence.
+}
+
+Faisons référence :
+\begin{enumerate}
+    \item au premier rappel (le \autoref{rappel1});
+    \item seulement à son numéro (le \ref{rappel1});
+    \item au nom du deuxième (\nameref{rappel2}).
+\end{enumerate}
+	\end{minted}
+\end{minipage}
+\hfill
+\begin{boxedminipage}{.34\linewidth}
+	\rappel{
+		\label{rappel1}
+		Premier point de référence.
+	}
+	\rappels[Rappel avec un titre]{
+		\label{rappel2}
+		Deuxième point de référence.
+	}
+	
+	Faisons référence :
+	\begin{enumerate}
+		\item au premier rappel (le \autoref{rappel1});
+		\item seulement à son numéro (le \ref{rappel1});
+		\item au nom du deuxième (\nameref{rappel2}).
+	\end{enumerate}
+\end{boxedminipage}
+
+
+
+
+
+\section{Problèmes connus}
+
+
+
+\subsection{Note de bas de page dans un paragraphe spécial}
+
+Lorsqu'un appel de note de bas de page reste collé à un environnement, par exemple dans une définition ou un paragraphe encadré, il est possible de l'envoyer tout de même en bas de page.
+
+\subsubsection{Note mal placée}
+
+\defin{
+	Une définition avec une note de bas de page dans le cadre \footnote{Note dans le cadre}
+}
+
+Exemple réalisé avec ce code :
+
+\begin{minted}{latex}
+\defin{
+  Une définition avec une note de bas de page dans le cadre
+  \footnote{Note dans le cadre
+}
+\end{minted}
+
+\subsubsection{Note placée correctement}
+
+\defin{
+	Une définition avec une note en bas de page
+	\footnotemark
+}
+\footnotetext{Note de bas de page au bon endroit}
+Exemple réalisé avec ce code :
+
+\begin{minted}{latex}
+\defin{
+  Une définition avec une note en bas de page
+  \footnotemark
+}
+\footnotetext{Note de bas de page au bon endroit}
+\end{minted}
+
+
+
+\subsection{Problème de filet dans une définition}
+
+\begin{minipage}[t]{.5\linewidth}
+	Il arrive que, lorsque la définition se situe en haut d'une page, le filet horizontal coupe le texte au lieu d'arriver juste en dessous comme dans l'exemple ci-contre.
+	
+	Dans une telle situation, il suffit de mettre un \inlatex{\newpage} juste avant pour forcer un saut de page propre et tout revient dans l'ordre.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.45\linewidth}
+	\vspace{-5ex}
+	\defin{
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fermentum feugiat nisi in condimentum.
+		\vspace*{-2ex}
+	}
+\end{minipage}
+
+
+
+\subsection{Erreur "Paragraph ended before <nom> was complete" à la compilation}
+
+Ce message provient d'une ligne vide dans le code, à l'intérieur d'un paragraphe spécial. Par exemple, une ligne vide pour séparer deux \inlatex{\item} dans une liste produit ce message d'erreur. Utiliser \inlatex{\\} au besoin, mais ne pas introduire de ligne vide !
+
+
+
+
+
+\section{D'autres personnalisations}
+
+
+
+\subsection{Avec tcolorbox}
+
+C'est le dernier package arrivé et sans doute le plus intéressant et le plus puissant ! Les autres peuvent être largement ignorés. Un exemple tiré du manuel (de 428 pages quand même\dots)
+
+\begin{LTXexample}[pos=o]
+	\begin{tcolorbox}[title=My title,
+		colback=red!5!white,
+		colframe=red!75!black,
+		colbacktitle=yellow!50!red,
+		coltitle=red!25!black,
+		fonttitle=\bfseries,
+		subtitle style={boxrule=0.4pt,
+			colback=yellow!50!red!25!white} ]
+		This is a \textbf{tcolorbox}.
+		\tcbsubtitle{My subtitle}
+		Further text.
+		\tcbsubtitle{Second subtitle}
+		Further text.
+	\end{tcolorbox}
+\end{LTXexample}
+
+
+\subsection{Avec thmtools}
+
+A l'aide des exemples de la documentation de \href{http://mirror.ctan.org/macros/latex/exptl/thmtools/thmtools.pdf}{thmtools}, on peut notamment configurer la manière dont fonctionnent le compteur, les références, la couleur de fond, le style de caractères, l'indentation\dots
+
+
+Il est relativement facile de personnaliser un style de paragraphe spécial, par exemple, pour lui ajouter un fond :
+
+\begin{LTXexample}[pos=o]
+    \begin{boxedDefinition}[Exemple]
+        Début de la définition
+    \end{boxedDefinition}
+\end{LTXexample}
+
+Pour créer ce fond, il suffit de créer un nouveau style, par exemple, ici dans le préambule :
+\begin{minted}[autogobble]{latex}
+  \declaretheoremstyle[notefont=\bfseries,parent=chapter,shaded={bgcolor=yellow}]{exempleStyle}
+  \declaretheorem[style=exempleStyle,name=Définition]{boxedDefinition}
+\end{minted}
+
+
+
+\subsection{Avec mdframed}
+
+L'environnement \mintinline{latex}{mdframed} offre des possibilités simples de faire des encadrés de paragraphes spéciaux, même sur plusieurs pages. On peut ainsi redéfinir des paragraphes spéciaux pour qu'ils aient une allure moins classique.
+
+L'exemple ci-dessous est réalisé avec les options suivantes :
+
+\begin{minted}{latex}
+\mdfdefinestyle{exampledefault}{outerlinewidth=5pt,innerlinewidth=0pt,
+outerlinecolor=red,roundcorner=5pt}  
+\end{minted}
+
+\global\mdfdefinestyle{exampledefault}{%
+	outerlinewidth=5pt,	innerlinewidth=0pt, outerlinecolor=red,	roundcorner=5pt
+}
+
+\begin{mdframed}[style=exampledefault]
+	\lipsum[1-8]
+\end{mdframed}

@@ -1,0 +1,87 @@
+% !TeX encoding = UTF-8
+% !TeX root = choix_extensions.tex
+\chapter{Informatique}
+
+
+
+
+
+\section{Raccourcis prédéfinis}
+
+Raccourci général pour le binaire :
+
+\begin{LTXexample}[pos=o,width=.4]
+	$100 \neq \binaire{100}$
+\end{LTXexample}
+
+
+
+
+
+\section{Colorisation syntaxique}
+
+On peut importer ou copier du code source dans \LaTeX \ et lui laisser gérer la colorisation syntaxique et la présentation correcte du code. Pour cela, il existe plusieurs librairies, dont \incmd{minted}. Elle fait appelle à la librairie Python \incmd{Pygments} pour effectuer la mise en forme et l'insérer dans le document final. Voir \href{https://pygments.org/}{https://pygments.org/} pour se faire une idée de ce que peut faire Pygments.
+
+Pour que \incmd{minted} puisse fonctionner, il faut que votre ordinateur dispose d'une distribution Python avec la librairie Pygments.
+
+
+
+\subsection{Installation complémentaire}
+
+Le plus simple est d'installer la version Open Source d'Anaconda qui contient tout ce qu'il faut\dots 
+\begin{center}
+	\href{https://www.anaconda.com/products/individual}{https://www.anaconda.com/products/individualb}
+\end{center}
+
+\remarque*{
+	Si Python déjà installé, mais qu'il manque Pygments, il est toujours possible de l'installer après coup. Il faut ouvrir un terminal (pas celui de Python, mais bien celui de l'ordinateur) et y taper la commande
+	\begin{center}
+		\incmd{pip3 install Pygments}
+	\end{center}
+}
+
+
+
+\subsection{Utilisation}
+
+Pour accéder aux raccourcis spécifiques à l'informatique, il faut appeler \incmd{preambule_college.sty} avec l'option \incmd{informatique} :
+\begin{center}
+	\mintinline{latex}{\usepackage[informatique]{styles/preambule_college}}
+\end{center}
+
+
+
+\subsection{Raccourcis}
+
+Pour faire de la colorisation syntaxique directement dans la ligne dans laquelle on écrit :
+
+\begin{LTXexample}[pos=o,width=.4]
+En bash : \newline
+\incmd{grep 'LaTeX' *.tex}\\[.5ex]
+En html : \newline
+\incmd{<a href="#">anchor</a>}\\[.5ex]
+En css : \newline
+\incmd{h1{color:red}}\\[.5ex]
+En js : \newline
+\injs{var x = 12}\\[.5ex]
+En java : \newline
+\injava{for(int i=0;i<10;i++)}\\[.5ex]
+En php : \newline
+\inphp{if (isset($_POST['nom']))}\\[.5ex]
+En sql : \newline
+\insql{select * from table `nom`}\\[.5ex]
+\end{LTXexample}
+
+Avec l'environnement \mintinline{latex}{\begin{minted}{code}contenu...\end{minted}}. Par exemple, ici pour du code MySQL.
+ 
+\begin{minted}{mysql}
+CREATE TABLE IF NOT EXISTS tblproduit (
+produit_ID SMALLINT NOT NULL
+,  produit_description VARCHAR(80)
+,  produit_typeReliure VARCHAR(8)
+,  produit_prixUnitaire SMALLINT
+,  PRIMARY KEY (produit_ID)
+)  ENGINE=InnoDB ;
+\end{minted}
+
+Il y a évidemment plein d'options de configuration (cf. \href{https://www.ctan.org/pkg/minted}{minted} et \href{http://pygments.org/}{Pygments}). On peut les appeler depuis le préambule avec \mintinline{latex}{\setmintedinline{key=value}}.

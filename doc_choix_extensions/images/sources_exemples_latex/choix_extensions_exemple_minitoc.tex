@@ -1,0 +1,21 @@
+\documentclass[twoside]{report}
+\usepackage[a6paper]{geometry}
+\usepackage{titlesec}
+\usepackage{minitoc}
+\dominitoc[n]
+\faketableofcontents
+\titleformat{\chapter}[hang]{\normalfont\bfseries\Large}{Chapitre \thechapter : }{.5em}{}
+
+
+
+\begin{document}
+\titlespacing*{\chapter}{0em}{0em}{*2.3}{}
+\chapter{Mon chapitre}
+  \section*{Dans ce chapitre}
+    \minitoc
+  \section{Ma section 1}
+    \subsection{Ma section 1}
+      bla bla
+  \section{Ma section 2}
+    bla bla
+\end{document}

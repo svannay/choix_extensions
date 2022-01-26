@@ -1,0 +1,54 @@
+% !TeX encoding = UTF-8
+% !TeX program = xelatex
+% !TeX spellcheck = fr
+\documentclass[10pt,a4paper]{report}
+\usepackage[informatique]{styles/preambule_college}
+\usepackage{styles/preambule_personnalisation}
+
+
+
+% ----------------------------------------------------------------------
+% Compilation chapitre par chapitre
+% ----------------------------------------------------------------------
+%\includeonly{choix_extensions_ch10_bibliographies}
+
+
+
+% ----------------------------------------------------------------------
+% Packages et configurations spéciales pour le fichier avec les exemples
+% LaTeX
+% ----------------------------------------------------------------------
+\usepackage{lipsum}					% Génère un texte sans signification (Lorem ipsum)
+\usepackage[final]{showexpl}		% Permet d'afficher un code LaTeX en parallèle de son résultat
+%									% N.B. ce package appelle le package listings pour la présentation du code
+\AtBeginDocument{%
+	\renewcommand*\lstlistlistingname{Examples}
+	\renewcommand*\lstlistingname{Example}
+}
+\declaretheoremstyle[notefont=\bfseries,parent=chapter,shaded={bgcolor=yellow}]{exempleStyle}
+\declaretheorem[style=exempleStyle,name=Définition]{boxedDefinition}
+
+
+
+
+
+% ----------------------------------------------------------------------
+% Début du document
+% ----------------------------------------------------------------------
+\begin{document}
+
+	\chapterFormat % Active le format personnalisé pour les titres de chapitres
+
+	\include{choix_extensions_ch00_front}
+	\pagenumbering{arabic}
+	\include{choix_extensions_ch01_priseEnMain}
+	\include{choix_extensions_ch02_compilation}
+	\include{choix_extensions_ch03_pages}
+	\include{choix_extensions_ch04_par_speciaux}
+	\include{choix_extensions_ch05_listes}
+	\include{choix_extensions_ch06_graphiques}
+	\include{choix_extensions_ch07_tableaux}
+	\include{choix_extensions_ch08_maths}
+	\include{choix_extensions_ch09_informatique}
+	\include{choix_extensions_ch10_bibliographies}
+\end{document}

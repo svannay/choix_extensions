@@ -1,0 +1,176 @@
+% !TeX encoding = UTF-8
+% !TeX root = choix_extensions.tex
+\chapter{Listes}
+\label{ch:gestionListes}
+
+Pour gérer finement les listes, rien ne vaut le package \href{http://mirror.ctan.org/macros/latex/contrib/enumitem/enumitem.pdf}{enumitem}. En l'appelant avec l'option \mintinline{latex}{shortlabels} \newline (\mintinline{latex}{\usepackage[shortlabels]{enumitem}}), il est compatible avec l'ancienne extension \mintinline{latex}{enumerate} qui est largement moins puissant.
+
+
+
+
+
+\section[enumerate]{Énumérations spéciales}
+
+
+
+\subsection*{Personnalisation de la numérotation}
+
+\begin{LTXexample}[pos=o]
+\begin{enumerate}[a.]
+    \item Un
+    \item Deux
+    \item Trois
+\end{enumerate}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=o]
+\begin{enumerate}[1.]
+    \item Un
+    \item Deux
+    \item Trois
+\end{enumerate}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=o]
+\begin{enumerate}[1)]
+    \item Un
+    \item Deux
+    \item Trois
+\end{enumerate}
+\end{LTXexample}
+
+
+
+\subsection*{Raccourcis}
+
+Le fichier \incmd{preambule_college.sty} contient les commandes suivants : \mintinline{latex}{enuma}, \mintinline{latex}{enum}, \mintinline{latex}{enumpar} :
+
+\begin{LTXexample}[pos=o]
+\enuma{
+    \item Un
+    \item Deux
+    \item Trois
+}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=o]
+\enum{
+    \item Un
+    \item Deux
+    \item Trois
+}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=o]
+\enumpar{
+    \item Un
+    \item Deux
+    \item Trois
+}
+\end{LTXexample}
+
+
+
+
+
+\section{Régler les espacements}
+
+
+
+\subsection{Verticaux}
+
+L'option \mintinline{latex}{itemsep} permet d'aérer la liste et \mintinline{latex}{topsep} règle l'espacement avec le texte avant ou après la liste (il y a encore d'autres paramètres plus pointus dans la documentation d'\mintinline{latex}{enumitem}).
+
+\begin{LTXexample}[pos=o,width=.4]
+Texte précédent
+\begin{enumerate}[itemsep=.2cm, topsep=.5cm]
+    \item Un
+    \item Deux
+    \item Trois
+\end{enumerate}
+Texte suivant
+\end{LTXexample}
+
+
+
+\subsection{Horizontaux}
+
+Pour éviter l'indentation de la liste : \mintinline{latex}{leftmargin=*}. Pour régler l'espacement entre le numéro et le texte : \mintinline{latex}{labelsep=} et la distance voulue.
+\begin{LTXexample}[pos=o,width=.4]
+Texte précédent
+\begin{enumerate}[leftmargin=*, labelsep=1cm]
+    \item Un
+    \item Deux
+    \item Trois
+\end{enumerate}
+Texte suivant
+\end{LTXexample}
+
+
+Tout aligner horizontalement sur la fin des labels :
+\begin{LTXexample}[pos=o,width=.4]
+\begin{description}[
+    font=\normalfont,
+    leftmargin=!,
+    labelwidth=\widthof{2000 :}]
+    \item[1994 :] Le 1er octobre, le \href{http://www.w3.org}{w3c} est créé pour définir des protocoles \dots
+    \item[1995 :] Le web compte 25'000 sites en ligne
+\end{description}
+\end{LTXexample}
+
+
+
+
+
+\section{Listes dans un paragraphe spécial}
+\label{sec:listeParSpeciaux}
+
+Si un des paragraphes spéciaux des sections \ref{sec:paragrapheSpecialDefin} et \ref{sec:paragraphesSpeciauxThmtools} débute immédiatement pas une liste (sans aucun texte entre le titre du paragraphe spécial et la liste), il manque un retour à la ligne. Le raccourci \mintinline{latex}{\listtopsep} permet de régler le problème :
+
+\begin{LTXexample}[pos=o,width=.4]
+\exemples{
+      \listtopsep
+      \begin{itemize}
+             \item Avec
+             \item précaution
+      \end{itemize}
+}
+\end{LTXexample}
+
+
+
+
+
+\newpage
+
+
+
+
+
+Parfois, il est nécessaire de régler cet espace au cas par cas. On peut le faire :
+\begin{enumerate}[a.]
+	\item de manière semi-automatique;
+		\begin{LTXexample}[pos=o,width=.4]
+\exemples{
+    \leavevmode
+    \vspace*{-\parskip}
+    \vspace*{-\baselineskip}
+    \begin{itemize}
+        \item Avec
+        \item précaution
+    \end{itemize}
+}
+		\end{LTXexample}
+	
+	\item à la main, par exemple ici l'espacement est de \mintinline{latex}{-3ex}.
+	   \begin{LTXexample}[pos=o,width=.4]
+\exemples{
+   \leavevmode
+   \vspace*{-3ex}
+   \begin{itemize}
+       \item Avec
+       \item précaution
+   \end{itemize}
+}
+	\end{LTXexample}
+\end{enumerate}
