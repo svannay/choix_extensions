@@ -33,23 +33,23 @@
 % ----------------------------------------------------------------------------------------------------------------
 % Utilitaires nécessaires à d'autes packages
 % ----------------------------------------------------------------------------------------------------------------
-\usepackage{ifthen}					% Tests conditionnels
-\usepackage{calc}					% Faire des calculs algébriques dans \setcounter, 
-%									% \addtocounter, \setlength, et \addtolength
-\usepackage{etex}					% Disposer de suffisamment de counter, length...
-\usepackage{etoolbox}				% Divers outils, notamment \BeforeBeginEnvironment
+\RequirePackage{ifthen}					% Tests conditionnels
+\RequirePackage{calc}					% Faire des calculs algébriques dans \setcounter, 
+%										% \addtocounter, \setlength, et \addtolength
+\RequirePackage{etex}					% Disposer de suffisamment de counter, length...
+\RequirePackage{etoolbox}				% Divers outils, notamment \BeforeBeginEnvironment
 
 
 
 % ----------------------------------------------------------------------------------------------------------------
 % Fonctionnalités de base
 % ----------------------------------------------------------------------------------------------------------------
-\usepackage[xindy]{imakeidx}		% Créer un index
-\usepackage{idxlayout}				% Configuration particulières de l'index
-\usepackage{geometry}      			% Redéfinir les dimensions de la page
-\usepackage{xparse}					% Permet de définir des arguments optionnels, version étoile... des commandes
-\usepackage{printlen}				% Permet d'afficher les valeurs de longueurs (length) dans le document final
-\uselengthunit{cm}					% Paramètre pour le paquet printlen
+\RequirePackage[xindy]{imakeidx}		% Créer un index
+\RequirePackage{idxlayout}				% Configuration particulières de l'index
+\RequirePackage{geometry}      			% Redéfinir les dimensions de la page
+\RequirePackage{xparse}					% Permet de définir des arguments optionnels, version étoile... des commandes
+\RequirePackage{printlen}				% Permet d'afficher les valeurs de longueurs (length) dans le document final
+\uselengthunit{cm}						% Paramètre pour le paquet printlen
 % Rem : biblatex est appelé depuis preambule_personnalisation.sty pour pouvoir faire varier citestyle et bibstyle.
 
 
@@ -57,64 +57,66 @@
 % ----------------------------------------------------------------------------------------------------------------
 % Réglages de l'apparence générale du document
 % ----------------------------------------------------------------------------------------------------------------
-\usepackage{microtype}				% Pour les effets typographiques fins (protrusion et expansion)
-\usepackage{lscape}					% Faire varier l'orientation portrait/paysage dans un document
-\usepackage{fancyhdr}				% Personnaliser les en-tête et pieds-de-page
-\usepackage{setspace}				% Modifier l'interligne
-\usepackage{fancybox}				% Pour mettre des boite de toutes sortes autour de n'importe quoi
-\usepackage{boxedminipage}			% Faire une boîte autour des minipage
-\usepackage[dotinlabels]{titletoc}	% Redéfinir la présentation de la table des matières
-\usepackage{titlesec}				% Redéfinir la présentation des marques de section (chapter, section...)
-%\usepackage{chappg}					% Fait apparaître le nom du chapitre dans la numérotation des pages
+\RequirePackage{microtype}				% Pour les effets typographiques fins (protrusion et expansion)
+\RequirePackage{lscape}					% Faire varier l'orientation portrait/paysage dans un document
+\RequirePackage{fancyhdr}				% Personnaliser les en-tête et pieds-de-page
+\RequirePackage{setspace}				% Modifier l'interligne
+\RequirePackage{fancybox}				% Pour mettre des boite de toutes sortes autour de n'importe quoi
+\RequirePackage{boxedminipage}			% Faire une boîte autour des minipage
+\RequirePackage[dotinlabels]{titletoc}	% Redéfinir la présentation de la table des matières
+\RequirePackage{titlesec}				% Redéfinir la présentation des marques de section (chapter, section...)
+%\RequirePackage{chappg}				% Fait apparaître le nom du chapitre dans la numérotation des pages
 
 
 
 % ----------------------------------------------------------------------------------------------------------------
 % Paragraphes spéciaux
 % ----------------------------------------------------------------------------------------------------------------
-\usepackage{amsthm}					% Définition des structure de liste thm de l'AMS
-\usepackage{thmtools}				% Définiton plus fine des paragraphes spéciaux
-\usepackage{marginnote}				% Pour placer du contenu dans les marges
-\usepackage[framemethod=tikz]{mdframed}	% Pour faires des paragraphes encadrés sur plusieurs pages
-%\usepackage{minitoc}				% Créer des tables des matières par chapitres
-%									% ATTENTION : décommenté, il fait créer une dernière page vide inutile en
-%									% interférant avec caption....
-\usepackage[stable]{footmisc}		% Pour personnaliser les notes de bas de page et les notes en marge.
-\usepackage{csquotes}				% Pour citer du texte en respectant les guillemets propres à chaque langue
+\RequirePackage{amsthm}					% Définition des structure de liste thm de l'AMS
+\RequirePackage{thmtools}				% Définiton plus fine des paragraphes spéciaux
+\RequirePackage{marginnote}				% Pour placer du contenu dans les marges
+\RequirePackage[framemethod=tikz]{mdframed}	% Pour faires des paragraphes encadrés sur plusieurs pages
+%\RequirePackage{minitoc}				% Créer des tables des matières par chapitres
+%										% ATTENTION : décommenté, il fait créer une dernière page vide inutile en
+%										% interférant avec caption....
+\RequirePackage[stable]{footmisc}		% Pour personnaliser les notes de bas de page et les notes en marge.
+\RequirePackage{csquotes}				% Pour citer du texte en respectant les guillemets propres à chaque langue
 
 
 
 % ----------------------------------------------------------------------------------------------------------------
 % Francisation du document
 % ----------------------------------------------------------------------------------------------------------------
-\usepackage{polyglossia}			% Paquet pour franciser le document (remplace Babel)
-\setmainlanguage{french}			% Option pour le choix principal de la langue
-\setotherlanguage{english}			% Option pour éviter des problèmes avec minted
-\usepackage{xunicode}				% Pour gérer les fontes de caractères avec XeLaTeX
-\usepackage{fontspec}				% Pour gérer les fontes de caractères avec XeLaTeX
-\usepackage{xltxtra}				% Pour gérer les fontes de caractères avec XeLaTeX
-\usepackage{datetime}				% Gérer les formats de temps, date, heure... 
+\RequirePackage{polyglossia}			% Paquet pour franciser le document (remplace Babel)
+\setmainlanguage{french}				% Option pour le choix principal de la langue
+\setdefaultlanguage[frenchpart=false]{french} % Pour éviter des warnings dûs à un clash avec hyperref
+\setotherlanguage{english}				% Option pour éviter des problèmes avec minted
+\RequirePackage{xunicode}				% Pour gérer les fontes de caractères avec XeLaTeX
+\RequirePackage{fontspec}				% Pour gérer les fontes de caractères avec XeLaTeX
+\RequirePackage{xltxtra}				% Pour gérer les fontes de caractères avec XeLaTeX
+\RequirePackage{datetime}				% Gérer les formats de temps, date, heure... 
 
 
 
 % ----------------------------------------------------------------------------------------------------------------
 % Gestion des graphiques, figures...
 % ----------------------------------------------------------------------------------------------------------------
-\usepackage{xcolor}					% Gérer les couleurs
-\usepackage{graphicx}				% Inclure des images
-\usepackage{caption}				% Pour personaliser les légendes des figures, tableaux et avec minipage
-\usepackage{subcaption}				% Pour les sous-figures, en remplacement de subfig et float
-\usepackage{pgf,tikz}				% Création de figures en TiKz, notamment pour l'import depuis GeoGebra
-\usepackage{pgfplots}				% Pour gérer les graphiques exportés depuis GeoGebra
+\RequirePackage{xcolor}					% Gérer les couleurs
+\RequirePackage{graphicx}				% Inclure des images
+\RequirePackage{float}					% Définit l'option H pour l'emplacement d'un flottant
+\RequirePackage{caption}				% Pour personaliser les légendes des figures, tableaux et avec minipage
+\RequirePackage{subcaption}				% Pour les sous-figures
+\RequirePackage{pgf,tikz}				% Création de figures en TiKz, notamment pour l'import depuis GeoGebra
+\RequirePackage{pgfplots}				% Pour gérer les graphiques exportés depuis GeoGebra
 % pour l'environnement axis utilisé par GeoGebra
 \pgfplotsset{
 	myaxis/.style={axis line style={->,-{Stealth[inset=0pt, length=7pt, angle'=30]}},trait},
 	compat=1.15
 }
-\usetikzlibrary{calc}				% Pour faire des calculs sur les coordonnées
-\usetikzlibrary{arrows.meta}		% Complément à tikz pour faire de jolies flèches
+\usetikzlibrary{calc}					% Pour faire des calculs sur les coordonnées
+\usetikzlibrary{arrows.meta}			% Complément à tikz pour faire de jolies flèches
 \usetikzlibrary{matrix, fit, backgrounds, positioning, calc}	% librairies additionnelles pour les matrices
-\tikzset{							% Pour créer des matrices en TikZ
+\tikzset{								% Pour créer des matrices en TikZ
 	every matrix/.append style={
 		matrix of math nodes,
 		nodes in empty cells,
@@ -124,51 +126,51 @@
 	every left delimiter/.style={xshift=.5em},
 	every right delimiter/.style={xshift=-.6em},
 }
-\tikzset{							% Pour créer des matrices en TikZ
+\tikzset{								% Pour créer des matrices en TikZ
 	matrice/.style={
 		nodes={text height=1.ex, text depth=.5ex, align=center},
 		%nodes={text width=.75em, text height=1.75ex, text depth=.5ex, align=center}
 	},
 }
-\usepackage{tikzscale}				% Permet l'appel de fichiers tikz depuis \includegraphics
-\usepackage{ccicons}				% Définir les icones Creative Commons
-\usepackage{bbding}					% Fonte de casseau supplémentaire
-\let\Cross\relax					% Pour éviter un clash avec marvosym
-\usepackage{marvosym}				% Fonte de casseau supplémentaire
-\usepackage{metalogo}				% Pour écrire TeX, LaTeX... correctement
-\usepackage{xltxtra}				% Pour écrire XeLaTeX correctement
-\usepackage [tikz]{bclogo}			% Pour avoir de jolis logos en couleurs et des boîtes
-\DeclareGraphicsRule{.mps}{eps}{*}{}  % Réglage pour que les logos (en metafont) soient traités comme des eps
+\RequirePackage{tikzscale}				% Permet l'appel de fichiers tikz depuis \includegraphics
+\RequirePackage{ccicons}				% Définir les icones Creative Commons
+\RequirePackage{bbding}					% Fonte de casseau supplémentaire
+\let\Cross\relax						% Pour éviter un clash avec marvosym
+\RequirePackage{marvosym}				% Fonte de casseau supplémentaire
+\RequirePackage{metalogo}				% Pour écrire TeX, LaTeX... correctement
+\RequirePackage{xltxtra}				% Pour écrire XeLaTeX correctement
+\RequirePackage [tikz]{bclogo}			% Pour avoir de jolis logos en couleurs et des boîtes
+\DeclareGraphicsRule{.mps}{eps}{*}{}  	% Réglage pour que les logos (en metafont) soient traités comme des eps
 
 
 
 % ----------------------------------------------------------------------------------------------------------------
 % Gérer la composition des tableaux
 % ----------------------------------------------------------------------------------------------------------------
-\usepackage{longtable}				% Tableaux sur plusieurs pages, accepte les \footnote{}
-\usepackage{multirow}     			% Fusionne les lignes des tableaux
-\usepackage{multicol}    			% Fusionne les colonnes des tableaux
-\usepackage{hhline}      			% Bordures améliorées dans les tableaux
-\usepackage{tabularx}    			% Tableaux avec otpimisation des largeurs de colonnes
-\usepackage{colortbl}     			% Mettre de la couleur dans des tableaux
-%									% Attention : rempli aussi les doubles barres horizontales
-\usepackage{booktabs}				% Pour la création de tables professionnelles type livres
+\RequirePackage{longtable}				% Tableaux sur plusieurs pages, accepte les \footnote{}
+\RequirePackage{multirow}     			% Fusionne les lignes des tableaux
+\RequirePackage{multicol}    			% Fusionne les colonnes des tableaux
+\RequirePackage{hhline}      			% Bordures améliorées dans les tableaux
+\RequirePackage{tabularx}    			% Tableaux avec otpimisation des largeurs de colonnes
+\RequirePackage{colortbl}     			% Mettre de la couleur dans des tableaux
+%										% Attention : rempli aussi les doubles barres horizontales
+\RequirePackage{booktabs}				% Pour la création de tables professionnelles type livres
 
 
 
 % ----------------------------------------------------------------------------------------------------------------
 % Composition en deux colonnes parallèles (e.g. un mot et sa traduction)
 % ----------------------------------------------------------------------------------------------------------------
-\usepackage{parallel}
+\RequirePackage{parallel}
 
 
 
 % ----------------------------------------------------------------------------------------------------------------
 % Gestion des hyperliens cliquables et des références (appler hyperref en dernier pour éviter des problèmes)
 % ----------------------------------------------------------------------------------------------------------------
-\usepackage{nameref}
-\usepackage{hyperxmp}
-\usepackage[xetex]{hyperref} %,colorlinks=true,urlcolor=blue,hypertexnames=false
+\RequirePackage{nameref}
+\RequirePackage{hyperxmp}
+\RequirePackage[xetex]{hyperref} %,colorlinks=true,urlcolor=blue,hypertexnames=false
 \hypersetup{
 	bookmarks=true,					% show bookmarks bar?
 	unicode=false,					% non-Latin characters in Acrobat?s bookmarks
@@ -201,7 +203,7 @@
 % ----------------------------------------------------------------------------------------------------------------
 % Gestion des nombres et des unités
 % ----------------------------------------------------------------------------------------------------------------
-\usepackage{siunitx}
+\RequirePackage{siunitx}
 \sisetup{
 	output-decimal-marker={.},			% Fait apparaître une virgule décimale, notamment avec \num{...}
 	exponent-product = \cdot,			% Notation scientifique avec un . au lieu d'un x
@@ -212,42 +214,42 @@
 % ----------------------------------------------------------------------------------------------------------------
 % Packages AMS et autres packages standard pour les maths
 % ----------------------------------------------------------------------------------------------------------------
-\usepackage{amsmath}				% Package de base de l'American Mathematical Society
-%\usepackage{amssymb}				% Définition des symboles mathématiques de l'AMS
-%\usepackage{amsfonts}				% Définition des polices mathématiques de l'AMS
-%\usepackage{amsopn}					% Nom des opérateurs, \DeclareMathOperator de l'AMS
-\usepackage{mathtools}				% Corrections de bugs et symboles supplémentaires
-\usepackage{array}					% Extension de tabular en mode mathématique
-\usepackage{unicode-math}			% Pour charger les fontes mathématiques Unicode avec XeLaTeX
-\usepackage[d]{esvect}				% Pour faire facilement des flèches sur les vecteurs
-\usepackage{xfrac}					% Pour les fractions, notamment \sfrac{}
-\usepackage{cancel}					% Pour barrer des expressions
-\usepackage{braket}					% Défini \set, \Set et gère correctement la taille de | (sans \middle)
-\usepackage{IEEEtrantools}			% Pour l'alignement des équations
-\usepackage{tkz-tab}				% Pour faire des tableaux de signes ou de variations
-\usepackage{tcolorbox}				% Pour faire toutes sortes de boîtes sympa
+\RequirePackage{amsmath}				% Package de base de l'American Mathematical Society
+%\RequirePackage{amssymb}				% Définition des symboles mathématiques de l'AMS
+%\RequirePackage{amsfonts}				% Définition des polices mathématiques de l'AMS
+%\RequirePackage{amsopn}				% Nom des opérateurs, \DeclareMathOperator de l'AMS
+\RequirePackage{mathtools}				% Corrections de bugs et symboles supplémentaires
+\RequirePackage{array}					% Extension de tabular en mode mathématique
+\RequirePackage{unicode-math}			% Pour charger les fontes mathématiques Unicode avec XeLaTeX
+\RequirePackage[d]{esvect}				% Pour faire facilement des flèches sur les vecteurs
+\RequirePackage{xfrac}					% Pour les fractions, notamment \sfrac{}
+\RequirePackage{cancel}					% Pour barrer des expressions
+\RequirePackage{braket}					% Défini \set, \Set et gère correctement la taille de | (sans \middle)
+\RequirePackage{IEEEtrantools}			% Pour l'alignement des équations
+\RequirePackage{tkz-tab}				% Pour faire des tableaux de signes ou de variations
+\RequirePackage{tcolorbox}				% Pour faire toutes sortes de boîtes sympa
 
 
 
 % ----------------------------------------------------------------------------------------------------------------
 % Gérer les listes et énumérations (à placer après IEEEtrantools)
 % ----------------------------------------------------------------------------------------------------------------
-\usepackage{expdlist}				% Aligner et couper des listes par un commentaire
+\RequirePackage{expdlist}				% Aligner et couper des listes par un commentaire
 \let\labelindent\relax					% Pour éviter un clash avec labelindent dans IEEEtrantools
-\usepackage[shortlabels,inline]{enumitem}	% Pour paramétrer facilement les listes
+\RequirePackage[shortlabels,inline]{enumitem}	% Pour paramétrer facilement les listes
 
 
 
 % ----------------------------------------------------------------------------------------------------------------
 % Informatique : packages pour la mise en forme de code
 %
-% Ne sont appelés que si l'option informatique est appelée (\usepackage[informatique]{preammbule_college})
+% Ne sont appelés que si l'option informatique est appelée (\usepackage[informatique]{styles/preammbule_college})
 % ----------------------------------------------------------------------------------------------------------------
 \makeatletter
 \@ifundefined{preambuleCollege@info}{}{%
-	\usepackage{minted}				% Pour la coloration syntaxique des langages de programmation
-	\usepackage{listings}			% Variante pour la coloration syntaxique des langages de programmation
-	\lstset{%						% Réglages pour listing
+	\RequirePackage{minted}				% Pour la coloration syntaxique des langages de programmation
+	\RequirePackage{listings}			% Variante pour la coloration syntaxique des langages de programmation
+	\lstset{%							% Réglages pour listing
 		basicstyle=\ttfamily\small,
 		commentstyle=\itshape\ttfamily\small,
 		showspaces=false,
@@ -437,11 +439,11 @@
 \newcommand{\wideparen}[1]{\ensuremath{\overparen{#1}}} 	% Pour les arcs
 \renewcommand\logowidth{12pt}								% taille des logos bclogo
 \newcommand{\attention}{\raisebox{-.75ex}{\bcattention \ }}	% Signal attention de bclogo
-\newcommand{\nRe}{\ensuremath{\,\cancel{\Re} \,} }				% pas en relation avec
+\newcommand{\nRe}{\ensuremath{\,\cancel{\Re} \,} }			% pas en relation avec
 \newcommand{\nsubset}{\ensuremath{\not \subset}}			% non inclus
 \newcommand{\nbot}{\ensuremath{\cancel{\bot}}}				% non perpendiculaire
 %\newcommand{\nLeftrightarrow}{\ensuremath{\,\not\!\Leftrightarrow}}	% non équivalent
-\newcommand{\vide}{\ensuremath{\diameter}}				% ensemble vide un peu plus joli...
+\newcommand{\vide}{\ensuremath{\diameter}}					% ensemble vide un peu plus joli...
 \newcommand{\ie}{\textrm{i.e. }} 							% id est (c'est-à-dire)
 \newcommand{\de}{\si{\degree}}								% ° avec le package siunitx
 \newcommand{\Hyp}{\tikz[inner sep=.25ex,baseline=-.75ex]{ \node[circle,draw,thick] {\footnotesize H};}}	% pour introduire une hypothèse
@@ -724,7 +726,7 @@
 	% xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	% 2.3 INFORMATIQUE
 	%
-	% Ne sont appelés que si l'option informatique est appelée (\usepackage[informatique]{preammbule_college})
+	% Ne sont appelés que si l'option informatique est appelée (\usepackage[informatique]{styles/preammbule_college})
 	% xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	
 	
