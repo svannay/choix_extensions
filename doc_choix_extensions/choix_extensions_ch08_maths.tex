@@ -296,14 +296,37 @@ Unité seule : \si{\degree} \\
 Nombre seul : \num{25,3}
 \end{LTXexample}
 
-Dans le dernier exemple, notez que le code contient une virgule décimale, alors que le texte compilé contient un point décimal. C'est un exemple des nombreux paramètres que l'on peut régler avec \href{http://mirror.ctan.org/macros/latex/contrib/siunitx/siunitx.pdf}{siunitx}.
 
-Ici, le fichier \mintinline{latex}{preambule_college.sty} contient :
-\begin{minted}{latex}
-\sisetup{
-  output-decimal-marker={.},
-}
-\end{minted}
+
+\subsection*{Réglages}
+
+\href{http://mirror.ctan.org/macros/latex/contrib/siunitx/siunitx.pdf}{siunitx} permet de gérer l'apparence des nombres et des unités de manière centrale. Ici, le fichier les options définies dans le fichier \mintinline{latex}{preambule_college.sty} sont : \\
+
+\begin{minipage}{.10\linewidth}
+	~
+\end{minipage}
+\begin{minipage}{.75\linewidth}
+	\begin{minted}[autogobble,linenos]{latex}
+	  \sisetup{
+	    input-digits = 0123456789\dots,
+	    output-decimal-marker={.},
+	    exponent-product = \cdot,
+	    inter-unit-product = \ensuremath{{ } \cdot { }}
+	  }
+	\end{minted}
+\end{minipage}
+
+Ces réglages servent (par ligne) :
+\begin{itemize}[leftmargin=!]
+	\item[2] pouvoir mettre un \dots \ dans une quantité numérique;
+	\item[3] utiliser une virgule décimale dans les nombres;
+	\item[4] utiliser un . au lieu d'un x pour la multiplication dans les notations scientifiques;
+	\item[5] noter les unités comme dans le "Formulaires et Tables".
+\end{itemize}
+
+
+
+\attention Dans le SI il n'est pas admis de noter des exposants à virgule, par exemple $10^{2.3}$. Les dernières versions de \incmd{siunitx} vérifient ceci et empêche des écritures du type \inlatex{e2.3}.
 
 
 
@@ -545,7 +568,13 @@ $\left\{ \,
 \right.$
 \end{LTXexample}
 
-Pour mémoire : un extrait de la documentation de \incmd{IEEEeqnarraybox} :
+Voir ci-dessous les extraits de la documentation de \incmd{IEEEeqnarraybox} :
+
+
+\subsubsection{IEEEstrut}
+
+\inlatex{\IEEEstrut[height][depth][decl]} \\
+decl : The optional argument is for commands that are to be executed within the environment, but before the alignment actually begins.
 
 
 \subsubsection{Descripteurs de colonnes}

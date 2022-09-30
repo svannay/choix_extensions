@@ -153,3 +153,65 @@ Avec l'extension \href{https://www.ctan.org/pkg/booktabs}{booktabs.sty}, on peut
     $\cF$ & $\cF$ & $\cF$ \\ \bottomrule
 \end{tabular}
 \end{LTXexample}
+
+
+
+
+
+\section{Numéroter les lignes d'un tableau}
+
+On définit la commande \inlatex{\rownumber} en préambule : 
+
+\begin{minted}[autogobble]{latex}
+	\preto\tabular{\setcounter{magicrownumbers}{0}}
+	\newcounter{magicrownumbers}
+	\newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
+\end{minted}
+
+\begin{LTXexample}
+\begin{tabular}{|l|c|}
+	N° & Contenu \\
+	\hline
+	\rownumber & un \\
+	\rownumber & deux \\
+	\rownumber & trois
+\end{tabular}
+\end{LTXexample}
+
+
+
+
+
+\section{Redéfinir les espacement dans un tableau}
+
+\begin{minipage}{.9\linewidth}
+	\begin{minted}[autogobble,breaklines]{latex}
+        \renewcommand{\arraystretch}{3}
+        \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+        \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}l*{2}{M{.15\linewidth}}M{.2\linewidth}M{.25\linewidth}}
+          \toprule
+          \textbf{Suite} & \textbf{Définition} & \textbf{Raison} & \textbf{Terme général} & \parbox{\linewidth}{\textbf{Somme partielle des $\symbf{n}$ premiers termes}} \\
+          \addlinespace
+          \midrule
+          Arith. & $u_{n+1} = u_n + r$ & $r = u_{n+1} - u_n$ & $u_n = u_1 + (n-1) \cdot r$ & $S_n = n \cdot \dfrac{u_1+u_n}{2}$ \\
+          Géom. & $u_{n+1} = u_n \cdot r$ & $r = \dfrac{u_{n+1}}{u_n}$ & $u_n = u_1 \cdot r^{n-1}$ & $S_n = u_1 \cdot \dfrac{1-r^n}{1-r}$ \\
+          \addlinespace[2ex]
+          \bottomrule
+        \end{tabular*}
+	\end{minted}
+\end{minipage}
+
+\begin{center}
+	\renewcommand{\arraystretch}{3}
+	\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+	\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}l*{2}{M{.15\linewidth}}M{.2\linewidth}M{.25\linewidth}}
+		\toprule
+		\textbf{Suite} & \textbf{Définition} & \textbf{Raison} & \textbf{Terme général} & \parbox{\linewidth}{\textbf{Somme partielle des $\symbf{n}$ premiers termes}} \\
+		\addlinespace
+		\midrule
+		Arith. & $u_{n+1} = u_n + r$ & $r = u_{n+1} - u_n$ & $u_n = u_1 + (n-1) \cdot r$ & $S_n = n \cdot \dfrac{u_1+u_n}{2}$ \\
+		Géom. & $u_{n+1} = u_n \cdot r$ & $r = \dfrac{u_{n+1}}{u_n}$ & $u_n = u_1 \cdot r^{n-1}$ & $S_n = u_1 \cdot \dfrac{1-r^n}{1-r}$ \\
+		\addlinespace[2ex]
+		\bottomrule
+	\end{tabular*}
+\end{center}

@@ -89,7 +89,6 @@
 % ----------------------------------------------------------------------------------------------------------------
 \RequirePackage{polyglossia}			% Paquet pour franciser le document (remplace Babel)
 \setmainlanguage{french}				% Option pour le choix principal de la langue
-\setdefaultlanguage[frenchpart=false]{french} % Pour éviter des warnings dûs à un clash avec hyperref
 \setotherlanguage{english}				% Option pour éviter des problèmes avec minted
 \RequirePackage{xunicode}				% Pour gérer les fontes de caractères avec XeLaTeX
 \RequirePackage{fontspec}				% Pour gérer les fontes de caractères avec XeLaTeX
@@ -103,6 +102,9 @@
 % ----------------------------------------------------------------------------------------------------------------
 \RequirePackage{xcolor}					% Gérer les couleurs
 \RequirePackage{graphicx}				% Inclure des images
+\RequirePackage{tcolorbox}				% Pour faire des boîtes de couleurs
+\RequirePackage{svg}					% Pour pouvoir inclure directement des fichiers svg
+\RequirePackage{pdfpages}				% Pour pouvoir inclure directement des fichiers pdf
 \RequirePackage{float}					% Définit l'option H pour l'emplacement d'un flottant
 \RequirePackage{caption}				% Pour personaliser les légendes des figures, tableaux et avec minipage
 \RequirePackage{subcaption}				% Pour les sous-figures
@@ -114,8 +116,14 @@
 	compat=1.15
 }
 \usetikzlibrary{calc}					% Pour faire des calculs sur les coordonnées
-\usetikzlibrary{arrows.meta}			% Complément à tikz pour faire de jolies flèches
+\usetikzlibrary{arrows.meta,			% Complément à tikz pour faire de jolies flèches
+	tikzmark,							% Complément à tikz pour faire des flèches entre du texte et des formules
+	calc,								% Pour calculer des position en tikz
+	positioning,						% Pour des indactions de positionnement
+	intersections						% Pour calculer les intersections entre chemins
+}						% Complément à tikz pour faire des flèches entre du texte et des formules
 \usetikzlibrary{matrix, fit, backgrounds, positioning, calc}	% librairies additionnelles pour les matrices
+\usetikzlibrary{shapes}					% Pour les figures de base de diagrammes UML
 \tikzset{								% Pour créer des matrices en TikZ
 	every matrix/.append style={
 		matrix of math nodes,
@@ -187,28 +195,8 @@
 	filecolor=magenta,				% color of file links
 	urlcolor=blue					% color of external links
 }
+\usepackage{xurl}					% permet la césure des URL
 
-
-
-% ----------------------------------------------------------------------------------------------------------------
-% Césure des URL
-% ----------------------------------------------------------------------------------------------------------------
-%Pour permettre de couper les urls après un "-"
-\makeatletter
-\g@addto@macro{\UrlBreaks}{\UrlOrds}
-\makeatother
-
-
-
-% ----------------------------------------------------------------------------------------------------------------
-% Gestion des nombres et des unités
-% ----------------------------------------------------------------------------------------------------------------
-\RequirePackage{siunitx}
-\sisetup{
-	output-decimal-marker={.},			% Fait apparaître une virgule décimale, notamment avec \num{...}
-	exponent-product = \cdot,			% Notation scientifique avec un . au lieu d'un x
-	inter-unit-product = \ensuremath{{ } \cdot { }}	% Notation des unités comme dans le "Formulaires et Tables"
-}
 
 
 % ----------------------------------------------------------------------------------------------------------------
@@ -228,6 +216,20 @@
 \RequirePackage{IEEEtrantools}			% Pour l'alignement des équations
 \RequirePackage{tkz-tab}				% Pour faire des tableaux de signes ou de variations
 \RequirePackage{tcolorbox}				% Pour faire toutes sortes de boîtes sympa
+
+
+
+% ----------------------------------------------------------------------------------------------------------------
+% Gestion des nombres et des unités (à placer après amsmath pour le \robustify\dots)
+% ----------------------------------------------------------------------------------------------------------------
+\usepackage{siunitx}
+\robustify\dots							% Pour pouvoir mettre un \dots dans une quantité
+\sisetup{
+	input-digits = 0123456789\dots,		% Pour pouvoir mettre un \dots dans une quantité
+	output-decimal-marker={.},			% Fait apparaître une virgule décimale, notamment avec \num{...}
+	exponent-product = \cdot,			% Notation scientifique avec un . au lieu d'un x
+	inter-unit-product = \ensuremath{{ } \cdot { }}	% Notation des unités comme dans le "Formulaires et Tables"
+}
 
 
 
@@ -259,9 +261,11 @@
 		breakautoindent=true,
 		captionpos=t
 	}
-	% ----------------------------------------------------------------------------------------------------------------
+	\RequirePackage{scratch3}			% Pour faire des blocs Scratch
+	\setscratch{scale=.75}				% Ajuste la tailles des blocks Scratch
 }
 \makeatother
+% ----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -732,9 +736,12 @@
 	
 	
 	%-----------------------------------------------------------------------------------------------------------------
-	% Ecrire des nombres en binaire (un b en indice)
+	% Ecrire des nombres en binaire, hexadécimal, décmimal
 	% ----------------------------------------------------------------------------------------------------------------
-	\newcommand\binaire[1]{\ensuremath{{#1}\raisebox{-.5ex}{\footnotesize bin}}}
+	%\newcommand\binaire[1]{\ensuremath{{#1}\raisebox{-.5ex}{\footnotesize bin}}}
+	\newcommand\nbBin[1]{\ensuremath{0\text{b}\thinspace{#1}}}
+	\newcommand\nbDec[1]{\ensuremath{0\text{d}\thinspace{#1}}}
+	\newcommand\nbHex[1]{\ensuremath{0\text{x}\thinspace{#1}}}
 	
 	
 	
@@ -774,7 +781,7 @@
 	
 	%-----------------------------------------------------------------------------------------------------------------
 	%
-	% Definitions des couleurs de LibreOffice
+	% Definitions de couleurs supplmentaires
 	%
 	% ----------------------------------------------------------------------------------------------------------------
 	\definecolor{magenta}{rgb}{1,0,1}
@@ -786,6 +793,18 @@
 	\definecolor{OOo_jaune}{rgb}{1,1,0}
 	\definecolor{OOo_gris_40p}{rgb}{.6,.6,.6}
 	\definecolor{grisClair}{rgb}{.9,.9,.9}
+	\definecolor{bleu_mare}{HTML}{0051f2}
+	
+	
+	
+	% ----------------------------------------------------------------------------------------------------------------
+	% Diagrammes de flux : style des nœuds et des flèches
+	% ----------------------------------------------------------------------------------------------------------------
+	\tikzstyle{terminal}=[ellipse, draw, on grid=false]
+	\tikzstyle{processus}=[rectangle, draw, on grid=false, minimum width=10em, text centered, minimum height=1cm]
+	\tikzstyle{branchement}=[diamond, draw, on grid=false, aspect=2.5, minimum width = 3cm, minimum height = 1cm, text badly centered, inner sep=2pt]
+	\tikzstyle{es}=[trapezium, draw, on grid=false, trapezium left angle=60, trapezium right angle=120, text width = 2.5cm, text centered, minimum width = 1.5cm, minimum height = .8cm]
+	\tikzstyle{seq}=[draw, ->, >=stealth', thick, rounded corners=4pt]
 }
 % xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 \makeatother

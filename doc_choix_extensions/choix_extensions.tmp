@@ -1,0 +1,14 @@
+En bash : \newline
+\incmd{grep 'LaTeX' *.tex}\\[.5ex]
+En html : \newline
+\incmd{<a href="#">anchor</a>}\\[.5ex]
+En css : \newline
+\incmd{h1{color:red}}\\[.5ex]
+En js : \newline
+\injs{var x = 12}\\[.5ex]
+En java : \newline
+\injava{for(int i=0;i<10;i++)}\\[.5ex]
+En php : \newline
+\inphp{if (isset($_POST['nom']))}\\[.5ex]
+En sql : \newline
+\insql{select * from table `nom`}\\[.5ex]

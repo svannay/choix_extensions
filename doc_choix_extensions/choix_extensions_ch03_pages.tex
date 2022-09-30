@@ -309,6 +309,17 @@ On obtient le même effet pour l'ensemble du document avec les options : \mintin
 
 
 
+\section{Table des matières : modifier la largeur réservée pour le numéro}
+
+Avec le package \href{http://mirrors.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf}{titlesec}, on peut gérer la taille réservée pour la numérotation des chapitres, section\dots avec \\
+\inlatex{\dottedcontents{<section>}[<left>]{ <above-code>}{<label width>}{<leader width>}}.
+\exemple*{
+	\inlatex{\dottedcontents{section}[4.3em]{}{2.8em}{.8em}} pour avoir suffisamment de place entre le "13.11" et "Exercices" dans "13.11 Exercices"
+}
+
+
+
+
 
 \section{Table des matières par chapitre}
 
@@ -349,7 +360,7 @@ Avec l'extension \href{http://mirror.ctan.org/macros/latex/contrib/minitoc/minit
 
 \section{Boîte autour d'une minipage}
 Avec l'extension \href{http://mirror.ctan.org/macros/latex/contrib/boxedminipage/boxedminipage.pdf}{boxedminipage} (documentation plutôt sommaire !) :
-\begin{LTXexample}[pos=o,width=.4]
+\begin{LTXexample}[pos=o,width=.5]
 \begin{boxedminipage}[t]{3cm}
     Voyez le brick géant que j'examine près du wharf.
 \end{boxedminipage}
@@ -357,6 +368,31 @@ Avec l'extension \href{http://mirror.ctan.org/macros/latex/contrib/boxedminipage
     Quel beau bateau\dots
 \end{boxedminipage}
 \end{LTXexample}
+
+
+
+
+
+\section{Aérer les boîtes}
+Pour avoir des boîtes un peu plus spacieuses :
+\begin{LTXexample}[pos=o,width=.4]
+	\parbox{3cm}{Une boîte standard}
+\end{LTXexample}
+\begin{LTXexample}[pos=o,width=.4]
+	\setlength{\fboxsep}{10pt}
+	\parbox{3cm}{Une boîte plus aérée}
+\end{LTXexample}
+
+
+
+
+
+\section{Boîtes colorées autour de n'importe quoi}
+Pour avoir des boîtes un peu plus spacieuses :
+\begin{LTXexample}[pos=o,width=.25]
+$\tcboxmath{\Big( \lambda \cdot g \Big)' = \lambda \cdot g'}$
+\end{LTXexample}
+
 
 
 
@@ -375,6 +411,19 @@ Utiliser \mintinline{latex}{\multicols} :
 		
         Deuxième paragraphe
     \end{multicols}
+\end{LTXexample}
+
+
+
+\subsection{Colonnes de tailles différentes}
+
+\begin{LTXexample}[pos=o]
+\setlength{\columnsep}{-1.25cm}
+\begin{multicols}{2}
+	Premier paragraphe
+	
+	Deuxième paragraphe
+\end{multicols}
 \end{LTXexample}
 
 
@@ -452,6 +501,11 @@ Utiliser l'option \mintinline{latex}{landscape} dans l'extension \mintinline{lat
 	\includegraphics[width=\linewidth]{images/choix_extensions_exemple_landscape}
 \end{boxedminipage}
 
+
+
+
+
+\newpage
 
 
 

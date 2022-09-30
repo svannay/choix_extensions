@@ -35,7 +35,7 @@
 % ----------------------------------------------------------------------------------------------------------------
 % Définition de la taille du document
 % ----------------------------------------------------------------------------------------------------------------
-\geometry{textwidth=16cm,textheight=24cm,right=2cm,top=3cm, footskip=1.5cm}
+\geometry{textwidth=16cm,textheight=24cm,right=2cm,top=3cm,footskip=1.5cm}
 
 
 
@@ -76,15 +76,27 @@
 \fancyhead[LO,RE]{\bfseries \rightmark}
 \fancyhead[LE,RO]{\bfseries \leftmark}
 \fancyfoot[C]{\thepage}
+% Pour les pages avec un nouveau chapitre
 \fancypagestyle{plain}{
 	\fancyhead{}
 	\renewcommand{\headrulewidth}{0pt}
 	\fancyfoot[C]{\thepage}
 }
+%\fancypagestyle{simple}{
+%	\fancyhead[LO,RE]{}
+%}
 \fancypagestyle{simple}{
-	\fancyhead[LO,RE]{}
+	\fancyhf{}
+	\fancyhead[LO,RE]{\bfseries \rightmark}
+	\fancyhead[LE,RO]{\bfseries \leftmark}
+	\fancyfoot[C]{\thepage}
 }
 \setlength\headheight{15pt}
+\fancypagestyle{tocStyle}{
+	\fancyhf{}
+	\fancyhead[LO,RE]{\bfseries \rightmark}
+	\fancyfoot[C]{\thepage}
+}
 
 
 
@@ -121,6 +133,27 @@
 }
 
 
+
+% ----------------------------------------------------------------------------------------------------------------
+% Evite la référence au chapitre dans les compteurs d'exemple, remarque...
+% ----------------------------------------------------------------------------------------------------------------
+%\renewcommand{\theexempleThm}{\arabic{exempleThm}}
+%\renewcommand{\theexemplesThm}{\arabic{exemplesThm}}
+%\renewcommand{\theremarqueThm}{\arabic{remarqueThm}}
+%\renewcommand{\theremarquesThm}{\arabic{remarquesThm}}
+%\renewcommand{\theexerciceThm}{\arabic{exerciceThm}}
+%\renewcommand{\theexercicesThm}{\arabic{exercicesThm}}
+%\renewcommand{\theproprieteThm}{\arabic{proprieteThm}}
+%\renewcommand{\theproprietesThm}{\arabic{proprietesThm}}
+%\renewcommand{\thenotationThm}{\arabic{notationThm}}
+%\renewcommand{\thenotationsThm}{\arabic{notationsThm}}
+%\renewcommand{\theconsequenceThm}{\arabic{consequenceThm}}
+%\renewcommand{\theconsequencesThm}{\arabic{consequencesThm}}
+%\renewcommand{\theconventionThm}{\arabic{conventionThm}}
+%\renewcommand{\theconventionsThm}{\arabic{conventionsThm}}
+
+
+
 % ----------------------------------------------------------------------------------------------------------------
 % Supprime le rappel au numéro de chapitre dans le numréo de section
 % ----------------------------------------------------------------------------------------------------------------
@@ -149,6 +182,8 @@
 % Personnalisation de la table des matières (nombres de niveaux)
 % ----------------------------------------------------------------------------------------------------------------
 \setcounter{tocdepth}{1}
+\dottedcontents{section}[4.4em]{}{2.9em}{.8em}	% Evite que les n° de section longs se collent au titre
+												% Pour élargir, ajouter la même chose aux 2e et 4e arguments
 
 
 
@@ -162,6 +197,31 @@
 
 
 % ----------------------------------------------------------------------------------------------------------------
+% Personnalisation des listes pour avoir des 1), 2)...
+% ----------------------------------------------------------------------------------------------------------------
+\setlist[enumerate, 1]{1),leftmargin=*}
+
+
+
+% ----------------------------------------------------------------------------------------------------------------
+% Personnalisation des listes pour avoir des 1), 2)...
+% ----------------------------------------------------------------------------------------------------------------
+%\setlist[itemize]{leftmargin=*}		% Pour éviter d'indenter les listes à puce.
+%\setlist[enumerate]{leftmargin=*}	% Pour éviter d'indenter les listes numérotées
+%\setlist{itemsep=0ex}				% Pour éviter trop d'espace vertical entre les points d'une liste
+
+
+
+% ----------------------------------------------------------------------------------------------------------------
+% Définitions de d'une commande \rownumber permettant de numéroter les lignes d'un tableau
+% ----------------------------------------------------------------------------------------------------------------
+\preto\tabular{\setcounter{magicrownumbers}{0}}
+\newcounter{magicrownumbers}
+\newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
+
+
+
+% ----------------------------------------------------------------------------------------------------------------
 % Personnalisation des légendes
 % ----------------------------------------------------------------------------------------------------------------
 \captionsetup[figure]{name=Fig.}
@@ -171,11 +231,9 @@
 % ----------------------------------------------------------------------------------------------------------------
 % Personnalisation de la bibliographie
 % ----------------------------------------------------------------------------------------------------------------
-% ATTENTION : les options "style", "bibstyle", "citestyle" ne peuvent être choisies que dans le \usepackage
-\usepackage[
-	backend=biber,
-	style=numeric
-]{biblatex}
+% ATTENTION : les options "backend", "style", "bibstyle", "citestyle", "natbib" et "mcite" ne peuvent être fixées
+% que dans les options du \usepackage
+\usepackage[backend=biber]{biblatex}	% Pour la création de la bibliographie
 \ExecuteBibliographyOptions{
 	sortlocale=auto,					% Récupère les infos du pacakge polyglosia
 	isbn=true,
@@ -191,13 +249,6 @@
 %\DeclareCaseLangs{french}
 % ----------------------------------------------------------------------------------------------------------------
 \addbibresource{exemple_bibliographie.bib}
-
-
-
-% ----------------------------------------------------------------------------------------------------------------
-% Pour l'inclusion de PDF
-% ----------------------------------------------------------------------------------------------------------------
-\usepackage{pdfpages}
 
 
 
@@ -218,27 +269,39 @@
 % ----------------------------------------------------------------------------------------------------------------
 % Définition des styles pour les figures tikz
 % ----------------------------------------------------------------------------------------------------------------
+\usetikzlibrary{turtle}
 \usetikzlibrary{lindenmayersystems}
+\usetikzlibrary[shadings]
+\usetikzlibrary{positioning,shapes,fit}
 
 \definecolor{rouge}{rgb}{1,0,0}
 \definecolor{vert}{rgb}{0,0.59765625,0}
 \definecolor{bleu}{rgb}{0,0,1}
 \definecolor{magenta}{rgb}{1,0,1}
+\definecolor{gris}{rgb}{.75,.75,.75}
 
 \tikzset{rouge/.style={color=rouge}}
 \tikzset{vert/.style={color=vert}}
 \tikzset{bleu/.style={draw=bleu}}
 \tikzset{magenta/.style={draw=magenta}}
+\tikzset{orange/.style={draw=orange}}
 
 \tikzset{point/.style={fill=bleu,draw=bleu}}
 \tikzset{texte/.style={text=black,font=\normalsize}}
 \tikzset{trait/.style={draw=black,line width=0.75pt}}
 \tikzset{epais/.style={line width=2pt}}
-\tikzset{fin/.style={line width=.5pt}}
+\tikzset{fin/.style={line width=.15pt}}
 \tikzset{tille/.style={dash pattern=on 2pt off 2pt}}
 \tikzset{> = {Stealth[inset=0pt, length=7pt, angle'=30]}}
 
 \tikzstyle{cadre} = [rectangle, rounded corners, minimum width=2cm, minimum height=1.5cm,text centered, draw=black, fill=gris]
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+% pour l'environnement axis
+\pgfplotsset{
+	myaxis/.style={axis line style={->,-{Stealth[inset=0pt, length=7pt, angle'=30]}},trait}
+}
 
 
 
@@ -253,16 +316,41 @@
 \newlength{\demi}					% Taille pour un élément sur une moitié de ligne (p/r à \linewidth)
 \newlength{\tiers}					% Taille pour un élément sur un tiers de ligne (p/r à \linewidth)
 % Ces longueurs doivent être assignées au début du document, lorsque \linewidth est connu.
-% Espacements verticaux
+
+\setlength{\fboxsep}{10pt}			% Pour avoir des boîtes un peu plus sapcieuses.
+
 \setlength{\columnsep}{20pt}		% Espace entre les colonnes des tableaux
 %\setlength{\parskip}{1em}			% Espacement vertical entre deux paragraphes consécutifs
 \setlength{\parindent}{0pt}			% Supprime l'indentation des alinéas dans tout le document (à mettre après
 % 									%   les définitions basées sur thmbox pour éviter un clash.
+\renewcommand{\ier}{\textsuperscript{er}}
+\renewcommand{\iere}{\textsuperscript{re}}
+\renewcommand{\iers}{\textsuperscript{ers}}
+\renewcommand{\ieres}{\textsuperscript{res}}
+\apptocmd{\ier}{~}{}{}
+\apptocmd{\iere}{~}{}{}
+\apptocmd{\iers}{~}{}{}
+\apptocmd{\ieres}{~}{}{}
+\renewcommand{\ieme}{\textsuperscript{e}}
+\renewcommand{\iemes}{\textsuperscript{e}}
+\apptocmd{\ieme}{~}{}{}
+\apptocmd{\iemes}{~}{}{}
 
 
 
 % ----------------------------------------------------------------------------------------------------------------
-% Mise en forme du principe de base
+% Définitions pour l'alignement des tableaux avec tabularx
+% ----------------------------------------------------------------------------------------------------------------
+\setlength{\columnsep}{20pt}		% Espace entre les colonnes des tableaux
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newlength{\demiH} 					% La demi-hauteur d'une ligne du tableau.
+\setlength{\demiH}{2ex}				% Taille de la demi-hauteur d'une ligne de tableau. Fonctionne avec \\[\demiH]
+
+
+
+% ----------------------------------------------------------------------------------------------------------------
+% Mise en forme du principe général
 % ----------------------------------------------------------------------------------------------------------------
 \tikzstyle{titre} = [draw=orange, rounded corners, fill=white, text= black]
 \tikzstyle{boite} = [draw=orange, fill=blue!5, very thick, rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
@@ -272,7 +360,7 @@
 
 \newenvironment{genBoite}%
 {%
-	%	\renewcommand{\genTitre}{\textbf{#1}}
+%	\renewcommand{\genTitre}{\textbf{#1}}
 	\begin{lrbox}{\genBoiteCmd}%
 		\begin{minipage}[!h]{\linewidth-1cm}
 		}%
@@ -281,8 +369,8 @@
 	\end{lrbox}
 	\begin{center}
 		\begin{tikzpicture}
-		\node[boite] (box){\usebox{\genBoiteCmd}};
-		\node[titre] at (box.north) {\genTitre};
+			\node[boite] (box){\usebox{\genBoiteCmd}};
+			\node[titre] at (box.north) {\genTitre};
 		\end{tikzpicture}
 	\end{center}
 }
@@ -291,8 +379,16 @@
 	\begin{genBoite}
 		{#1}
 	\end{genBoite}
-	%	\vspace*{-1em}
+%	\vspace*{-1em}
 }
+
+
+
+% ----------------------------------------------------------------------------------------------------------------
+% Pour faire des boîtes de couleur (package tcolorbox)
+% ----------------------------------------------------------------------------------------------------------------
+\tcbuselibrary{theorems}
+\tcbset{boxrule=1.2pt, tcbox raise base, colframe=orange, colback=blue!5}
 
 
 
@@ -300,10 +396,3 @@
 % Demande de création de l'index
 % ----------------------------------------------------------------------------------------------------------------
 %\makeindex
-
-
-
-% ----------------------------------------------------------------------------------------------------------------
-% Choix des options de compilations
-% ----------------------------------------------------------------------------------------------------------------
-\usepackage[sansReponse]{optional}
